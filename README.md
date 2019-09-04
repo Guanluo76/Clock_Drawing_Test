@@ -20,15 +20,15 @@ The clock test has a variety of score tables. The system uses a 4-point system, 
 
 ## <span id="depend">Dependencies</span>
 
-- [OpenCV](https://opencv.org/):
+- [OpenCV](https://opencv.org/) :
 
 `pip install opencv-python`
 
-- [Numpy](https://numpy.org/):
+- [Numpy](https://numpy.org/) :
 
 `pip install numpy`
 
-- [Django](https://www.djangoproject.com/):
+- [Django](https://www.djangoproject.com/) :
 
 `pip install Django`
 
@@ -42,3 +42,18 @@ import django
 
 ## <span id="method">Using Method</span>
 
+- Config the dependencies in need
+
+You should make sure having installed python3, django, opencv and numpy.
+
+- Download this repo
+
+One way, download this repo directly, the other, use the command : ```django-admin startproject CDT``` to build a django project and copy all folers and files into it.
+
+! Note : Don't forget to copy the backend part [https://github.com/SPiCaRiA/Clock-Drawing-Test](https://github.com/SPiCaRiA/Clock-Drawing-Test) to the judge folder.
+
+- Enter the follow command in cmd
+
+```python manage.py runserver 0.0.0.0:8000```
+
+Enter this to start the local server.
