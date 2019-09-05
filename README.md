@@ -121,3 +121,37 @@ The static folder is unique for django. Generally, the images, css files, js fil
 The template folder stores the static web pages which are written in hyper text markup language. And the basic address is defined in settings. Note: All pages are static files included in django project should be imported through absolute path, so, this is why we should define basic address in settings.
 
 [manage.py](manage.py) manages the status of the whole project.
+
+Now, let's have a look at some design details.
+
+This product uses plenty of canvas to do rendering. I packet some functions to draw line and circle which are widely used in the view.
+
+```
+function Draw_Line(pen, start_x, start_y, end_x, end_y) {
+    pen.beginPath();
+    pen.moveTo(start_x, start_y);
+    pen.lineTo(end_x, end_y);
+    pen.stroke();
+}
+
+function Draw_Circle(pen, center_x, center_y, radius, start_angle, end_angle) {
+    pen.beginPath();
+    pen.arc(center_x, center_y, radius, start_angle, end_angle);
+    pen.stroke();
+}
+
+function Fill_Circle(pen, center_x, center_y, radius, start_angle, end_angle) {
+    pen.beginPath();
+    pen.arc(center_x, center_y, radius, start_angle, end_angle);
+    pen.fill();
+}
+```
+
+And I use this way to set the style of the pen.
+
+```
+var content_pen = document.getElementById("content_canvas").getContext("2d");
+content_pen.strokeWidth = 6;
+content_pen.lineWidth = 6;
+content_pen.strokeStyle = '#2d85f0';
+```
