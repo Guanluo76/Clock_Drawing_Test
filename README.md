@@ -177,6 +177,7 @@ And the server end is.
 
 ```
 import base64
+
 image_data = request.POST.get('img_info')
 img_data = base64.b64decode(image_data)
 file = open('img.png',"wb")
@@ -210,11 +211,15 @@ Surely, it is right for the script itself. But in a django project, it runs wron
 At last, in view.py, call the judge part, I use a subprocess to carry out the outer program which stored in [judge/](judge/).
 
 ```
+import render
+import subprocess
+
 cmd = 'cd.. && '
 cmd += 'cd judge && '
 cmd += 'python -m CDT imgs/1.png imgs/2.png imgs/3.png'
 execmd = subprocess.Popen(cmd, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE)
 point = execmd.wait()
+
 return HttpResponse(point)
 ```
 
@@ -232,3 +237,28 @@ The other, now in fact, the backend grading code just implement two points, You 
 hour = int(request.POST.get('time_hour'))
 minute = int(request.POST.get('time_minute'))
 ```
+
+And how to extend the other two grading method, please refer to [https://github.com/SPiCaRiA/Clock-Drawing-Test](https://github.com/SPiCaRiA/Clock-Drawing-Test).
+
+## Summary
+
+This project mainly uses django + ajax framework. This part I record something useful when coding with this framework.
+
+- Use template to represent static page and define its absolute basic address in settings.
+
+- Use static folder to store static files imported by the template such as images, css and js, and define the absolute basic path of static file in settings.
+
+Example:
+
+```
+{% load static %}
+<link rel='icon' type='image/x-icon' href="{% static 'img/index.png' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+```
+
+- When sending a large size request, use 'POST' method.
+
+- When send 'POST' request, dont't forget adding ```{% csrf_token %}``` in template and ```csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),``` in the sending data.
+
+- All path of web pages should be define in urls.py and each page corresponds to a function in view.py.
