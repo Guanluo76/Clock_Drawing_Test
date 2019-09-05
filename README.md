@@ -110,4 +110,14 @@ The whole part adopt MVC design pattern. This repo just implements view and cont
 - manage.py
 ```
 
-The CDT folder is the framework of this project. [\_\_init__.py](CDT/__init__.py) makes others recognise this as a package.
+The CDT folder is the framework of this project. [\_\_init__.py](CDT/__init__.py) makes others recognise this as a package. [settings.py](CDT/settings.py) defines the basic path of template pages, static files including images, css, js and so on. [urls.py](CDT/urls.py) defines all pages in this project, each page corresponds to a function in view. [view.py](CDT/view.py) defines three pages, index is the index page, sketch is the drawing board and save is the controller. [wsgi.png](CDT/wsgi.png) manage the web server which help you run this application.
+
+The initial data folder is empty, because this folder stores the paintings you draw on the sketch.
+
+The judge folder stores the grading program. You should copy the whole repo from [https://github.com/SPiCaRiA/Clock-Drawing-Test](https://github.com/SPiCaRiA/Clock-Drawing-Test). Don't forget!
+
+The static folder is unique for django. Generally, the images, css files, js files be called by templates in django are stalled in this folder, and the path of static files are specified in settings.
+
+The template folder stores the static web pages which are written in hyper text markup language. And the basic address is defined in settings. Note: All pages are static files included in django project should be imported through absolute path, so, this is why we should define basic address in settings.
+
+[manage.py](manage.py) manages the status of the whole project.
