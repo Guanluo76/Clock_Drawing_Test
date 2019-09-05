@@ -60,9 +60,13 @@ One way, download this repo directly, the other, use the command : ```django-adm
 
 Enter ```127.0.0.1:8000/index/``` in the address bar of the browser, and the index page will be shown. It is the introduction on this product.
 
+![The Rending of Index Page](imgs/index.jpg)
+
 - Use the testing system
 
 Click the try part you will turn to the sketch page, which is a drawing board, just follow the command to draw will get the final result.
+
+![The Rending of Drawing Board](imgs/sketch.png)
 
 ## <span id="design">Design Idea</span>
 
