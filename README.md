@@ -164,3 +164,58 @@ canvas.height = document.documentElement.clientHeight;
 ```
 
 But this will appear horizontal and vertical scroll bars, and I set the style of the body ```scroll-x:hidden; scroll-y:hidden;``` Thus, the size adaptive will not affect the typesetting of the sketch page.
+
+Besides, what the tester draws should be stored in the server temperorily, but these images are firstly shown as canvas. I turn canvas to base64 encoded image format string, and send it to the server.
+
+The front end is as follows.
+
+```
+image_data = canvas.toDataURL("image/png").substr(22);
+```
+
+And the server end is.
+
+```
+import base64
+image_data = request.POST.get('img_info')
+img_data = base64.b64decode(image_data)
+file = open('img.png',"wb")
+file.write(img_data)
+file.close()
+```
+
+In this way, the canvas from the user end can be stored in the server end. But the first time, I use 'GET' method to send request, and I get nothing at the server end. Perhaps the size of a base64 image is so large. So, I change the ajax request to 'POST' method like this.
+
+```
+$.ajax({
+    type: 'POST',
+    url: '/save/',
+    data: {
+        'img_info': image_data,
+        'img_id': image_id,
+        'time_hour': hour,
+        'time_minute': minute,
+    },
+    success: function(data) {
+        if (data >= 0) {
+            alert('You get ' + data + ' points!');
+            window.location.href = "../index";
+        }
+    }
+});
+```
+
+Surely, it is right for the script itself. But in a django project, it runs wrongly. I searched some materials, in the sending data, I should add an extra assignment ```csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()``` and in the template, at where we submit the form, add something like this : ```{% csrf_token %}```. For more detail, please refer to the developer doc [https://docs.djangoproject.com/zh-hans/2.1/](https://docs.djangoproject.com/zh-hans/2.1/).
+
+At last, in view.py, call the judge part, I use a subprocess to carry out the outer program which stored in [judge/](judge/).
+
+```
+cmd = 'cd.. && '
+cmd += 'cd judge && '
+cmd += 'python -m CDT imgs/1.png imgs/2.png imgs/3.png'
+execmd = subprocess.Popen(cmd, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE)
+point = execmd.wait()
+return HttpResponse(point)
+```
+
+And finally return the point.
