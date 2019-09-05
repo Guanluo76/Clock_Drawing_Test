@@ -54,6 +54,58 @@ One way, download this repo directly, the other, use the command : ```django-adm
 
 - Enter the follow command in cmd
 
-```python manage.py runserver 0.0.0.0:8000```
+```python manage.py runserver 0.0.0.0:8000``` to start the local server.
 
-Enter this to start the local server.
+- Start project in browser
+
+Enter ```127.0.0.1:8000/index/``` in the address bar of the browser, and the index page will be shown. It is the introduction on this product.
+
+- Use the testing system
+
+Click the try part you will turn to the sketch page, which is a drawing board, just follow the command to draw will get the final result.
+
+## <span id="design">Design Idea</span>
+
+The whole part adopt MVC design pattern. This repo just implements view and controler. First let's have a look at the structure of the catalog.
+
+```
+- CDT
+    - __init__.py
+    - settings.py
+    - urls.py
+    - view.py
+    - wsgi.py
+- data
+- judge
+- static
+    - css
+        - index.css
+        - sketch.css
+    - img
+        - bin_select.png
+        - bin.png
+        - eraser_select.png
+        - eraser.png
+        - index.png
+        - next_select.png
+        - next.png
+        - pen_select.png
+        - pen.png
+        - rule_one.png
+        - rule_two.png
+        - rule_three.png
+        - rule_four.png
+        - step_one.png
+        - step_two.png
+        - step_three.png
+        - step_four.png
+        - symbol.png
+    - js
+        - index.js
+        - jquery-3.4.1.min.js
+        - sketch.js
+- template
+    - index.html
+    - sketch.html
+- manage.py
+```
