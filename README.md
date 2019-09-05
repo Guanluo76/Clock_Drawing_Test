@@ -109,3 +109,5 @@ The whole part adopt MVC design pattern. This repo just implements view and cont
     - sketch.html
 - manage.py
 ```
+
+The CDT folder is the framework of this project. [__init__.py](CDT/__init__.py) makes others recognise this as a package.
