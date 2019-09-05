@@ -2,7 +2,7 @@
 
 This is a [Clock Drawing Test](https://en.wikipedia.org/wiki/Executive_dysfunction#Clock_drawing_test) scoring system implemented with html, css, javascript and python, which is based on ajax + django design framework and mvc design pattern.
 
-## <span id="intro">Introduction</span>
+## Introduction
 
 The clock test is a simple, high-accuracy and culturally relevant deafness screening test that comprehensively reflects cognitive function, and can be used as an early screening tool for examining senile dementia.
 
@@ -18,7 +18,7 @@ The clock test has a variety of score tables. The system uses a 4-point system, 
 
 - The hour and minute hands pointing to the correct time (specified by the tester)
 
-## <span id="depend">Dependencies</span>
+## Dependencies
 
 - [OpenCV](https://opencv.org/) :
 
@@ -40,7 +40,7 @@ import cv2
 import django
 ```
 
-## <span id="method">Using Method</span>
+## Using Method
 
 - Config the dependencies in need
 
@@ -219,3 +219,16 @@ return HttpResponse(point)
 ```
 
 And finally return the point.
+
+## Future Extension
+
+There are two directions.
+
+First, now we recommand the tester to use tablet touch screen to draw on the canvas, because it will be more convenient to draw with pen or hand than a mouse. So the input device is limited. You can try to change it that the tester can submit only the final clock through scanning or taking pictures, and than do splitting and grading. Surely, in this way, the backend code should be modified at the same time.
+
+The other, now in fact, the backend grading code just implement two points, You can try to implement another two. And the 'hour' and 'minute' in the fourth grading point has been sent to view model.
+
+```
+hour = int(request.POST.get('time_hour'))
+minute = int(request.POST.get('time_minute'))
+```
