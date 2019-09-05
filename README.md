@@ -155,3 +155,12 @@ content_pen.strokeWidth = 6;
 content_pen.lineWidth = 6;
 content_pen.strokeStyle = '#2d85f0';
 ```
+
+For the drawing board, it requires a equal width and height with the browser. So, I deal it with such scripts.
+
+```
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+```
+
+But this will appear horizontal and vertical scroll bars, and I set the style of the body ```scroll-x:hidden; scroll-y:hidden;``` Thus, the size adaptive will not affect the typesetting of the sketch page.
